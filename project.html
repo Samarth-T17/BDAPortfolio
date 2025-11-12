@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Project Report</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #0f1724;
+      font-family: Arial, sans-serif;
+      color: #e6eef6;
+    }
+
+    header {
+      background: #111827;
+      color: #6ee7b7;
+      font-size: 18px;
+      padding: 12px 20px;
+      border-bottom: 1px solid #1f2937;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    iframe {
+      width: 100%;
+      height: calc(100% - 52px);
+      border: none;
+      background: white;
+    }
+
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #9aa4b2;
+      font-size: 16px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        font-size: 16px;
+        padding: 10px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    📘 Project Report Viewer
+  </header>
+
+  <div id="loading" class="loading">Loading report...</div>
+
+  <!-- Display your PDF file directly here -->
+  <iframe id="reportFrame" src="project_report.pdf" title="Project Report"></iframe>
+
+  <script>
+    const frame = document.getElementById('reportFrame');
+    const loading = document.getElementById('loading');
+
+    frame.addEventListener('load', () => {
+      loading.style.display = 'none';
+    });
+
+    // Optional: Prevent download shortcuts (not bulletproof)
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && ['s','p','u'].includes(e.key.toLowerCase())) e.preventDefault();
+      if (e.key === 'F12') e.preventDefault();
+    });
+  </script>
+</body>
+</html>
