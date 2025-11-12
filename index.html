@@ -4,74 +4,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My BDA Portfolio - Home</title>
-    
+
     <style>
-        /* --- General Styles --- */
+        :root {
+            --background: #f9f5ff;
+            --surface: #ffffff;
+            --text: #2f2a4a;
+            --muted-text: #5c5470;
+            --primary: #6759ff;
+            --primary-dark: #4c3ce0;
+            --accent: #ff8e71;
+            --accent-dark: #ff6b6b;
+            --highlight: #49beb7;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
         }
+
         .container {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 0 20px;
+            max-width: 1080px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
         }
 
-        /* --- Header --- */
         header {
-            background-color: #0a4a6e; /* Dark blue */
+            background: linear-gradient(135deg, var(--primary) 0%, var(--highlight) 100%);
             color: #ffffff;
-            padding: 40px 20px;
+            padding: 48px 24px 56px;
             text-align: center;
-            border-radius: 8px 8px 0 0;
+            border-radius: 24px 24px 8px 8px;
+            box-shadow: 0 14px 35px rgba(76, 60, 224, 0.28);
         }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
 
-        /* --- Navigation Menu --- */
-        nav { background-color: #333; overflow: hidden; }
-        nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; }
-        nav li { flex-grow: 1; }
-        nav a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 0.95em; transition: background-color 0.3s; }
-        nav a:hover { background-color: #575757; }
-        nav a.active { background-color: #007bff; font-weight: bold; }
+        header h1 {
+            margin: 0 0 12px;
+            font-size: 2.8rem;
+            letter-spacing: 0.5px;
+        }
 
-        /* --- Main Content Area --- */
+        header p {
+            margin: 0 auto;
+            max-width: 640px;
+            font-size: 1.15rem;
+            opacity: 0.92;
+        }
+
+        nav {
+            margin-top: -28px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            background: transparent;
+        }
+
+        nav li {
+            flex-grow: 0;
+        }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: #fff3e2;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(255, 142, 113, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+
+        nav a:hover {
+            background: #ffe0cc;
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(255, 142, 113, 0.35);
+        }
+
+        nav a.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.45);
+        }
+
         main {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background: var(--surface);
+            padding: 40px 36px 48px;
+            border-radius: 16px;
+            box-shadow: 0 24px 45px rgba(47, 42, 74, 0.12);
+            margin-top: 36px;
         }
-        section { margin-bottom: 30px; }
-        section h2 { color: #0a4a6e; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
-        section h3 { color: #005a9c; }
 
-        /* --- Project Overview List --- */
-        .project-list { list-style-type: none; padding-left: 0; }
-        .project-list li { background-color: #fdfdfd; border: 1px solid #eee; border-radius: 5px; padding: 20px; margin-bottom: 15px; transition: box-shadow 0.3s, transform 0.3s; }
-        .project-list li:hover { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
-        .project-list strong { font-size: 1.1em; color: #333; display: block; margin-bottom: 5px; }
-        .project-list p { margin: 0; color: #555; }
-        
-        /* --- Code Block Styles --- */
-        pre { background-color: #2b2b2b; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
-        code { font-family: 'Courier New', Courier, monospace; }
-        :not(pre) > code { background-color: #eee; padding: 2px 5px; border-radius: 3px; color: #c7254e; }
+        section {
+            margin-bottom: 40px;
+        }
 
-        /* --- Footer --- */
-        footer { text-align: center; margin-top: 30px; padding: 20px; font-size: 0.9em; color: #777; }
+        section h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            border-bottom: 3px solid rgba(103, 89, 255, 0.15);
+            padding-bottom: 12px;
+            letter-spacing: 0.6px;
+        }
+
+        .lead {
+            font-size: 1.05rem;
+            color: var(--muted-text);
+        }
+
+        .project-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+            display: grid;
+            gap: 20px;
+        }
+
+        .project-list li {
+            background: linear-gradient(135deg, rgba(103, 89, 255, 0.08), rgba(73, 190, 183, 0.08));
+            border-radius: 14px;
+            padding: 22px 24px;
+            border: 1px solid rgba(103, 89, 255, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .project-list li:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 32px rgba(47, 42, 74, 0.14);
+        }
+
+        .project-list strong {
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .project-list p {
+            margin: 0;
+            color: var(--muted-text);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 18px;
+            font-size: 0.9rem;
+            color: rgba(47, 42, 74, 0.65);
+        }
+
+        @media (max-width: 720px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            nav a {
+                width: 100%;
+            }
+
+            main {
+                padding: 32px 24px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Samarth Turmari's Big Data Analytics Portfolio</h1>
-        <p>Showcasing projects in Hadoop, Pig, Hive, MongoDB, and more.</p>
+        <h1>Samarth Turmari · Big Data Analytics Showcase</h1>
+        <p>Discover the highlights of my work with large-scale data systems—Hadoop, Pig, Hive, MongoDB, and a capstone analysis—all curated with fresh visuals and updated insights.</p>
     </header>
 
     <div class="container">
@@ -88,46 +207,44 @@
 
         <main>
             <section id="welcome">
-                <h2>Welcome</h2>
-                <p>Welcome to my Big Data Analytics (BDA) portfolio. This website serves as a practical demonstration of my skills and projects using key technologies in the big data ecosystem.</p>
-                <p>Please use the navigation bar above to explore the different sections, each dedicated to a specific tool or concept.</p>
+                <h2>Welcome Aboard</h2>
+                <p class="lead">Thank you for visiting my Big Data Analytics (BDA) portfolio. The site has been refreshed with a new color palette and reorganized explanations that narrate my learning journey across the major technologies in the Hadoop ecosystem.</p>
+                <p class="lead">Use the rounded navigation buttons above to jump straight into the topic you are curious about—from foundational distributed storage to hands-on scripting and data warehousing tools.</p>
             </section>
 
             <section id="overview">
-                <h2>Portfolio Overview</h2>
-                <p>This portfolio is divided into the following key sections:</p>
-                
+                <h2>What You’ll Find</h2>
+                <p class="lead">Each section blends step-by-step walkthroughs with practical examples, giving you a clear window into how I approached big data problems.</p>
+
                 <ul class="project-list">
                     <li>
-                        <strong>1. Hadoop & Word Count</strong>
-                        <p>Covers the fundamentals of Hadoop installation and a practical run-through of the foundational Word Count example.</p>
+                        <strong>1. Hadoop Foundations</strong>
+                        <p>Walk through the conceptual setup of a pseudo-distributed Hadoop cluster and follow a MapReduce Word Count run that cements the processing model.</p>
                     </li>
                     <li>
-                        <strong>2. Apache Pig</strong>
-                        <p>Demonstrates data flow scripting with Pig Latin, covering commands like FILTER, JOIN, GROUP, and ORDER, plus a Word Count implementation.</p>
+                        <strong>2. Apache Pig Recipes</strong>
+                        <p>Explore a retail-themed Pig Latin workflow that transforms raw sales records with FILTER, JOIN, GROUP, and ORDER operations and illustrates the resulting datasets.</p>
                     </li>
                     <li>
-                        <strong>3. Apache Hive</strong>
-                        <p>Explores data warehousing with Hive, showing queries using JOIN, AGGREGATION, SELECT, GROUP BY, and PARTITIONING.</p>
+                        <strong>3. Apache Hive Analytics</strong>
+                        <p>See how Hive tables and queries were crafted for an online marketplace scenario, including aggregation, joins, and partition-aware querying strategies.</p>
                     </li>
                     <li>
-                        <strong>4. MongoDB</strong>
-                        <p>A summary of key concepts from a professional course, focusing on essential features like indexing, aggregation pipelines, and data modeling.</p>
+                        <strong>4. MongoDB Essentials</strong>
+                        <p>Review reworded takeaways from my professional coursework, including document modeling, CRUD operations, indexing patterns, and aggregation pipelines.</p>
                     </li>
                     <li>
-                        <strong>5. Course Project</strong>
-                        <p>A comprehensive project that applies these BDA technologies to solve a real-world data challenge: Analyzing NYC Taxi Trip Data.</p>
+                        <strong>5. Capstone Project</strong>
+                        <p>Dive into the NYC Taxi data project report, where these technologies come together to answer real mobility questions. The PDF viewer keeps its original formatting.</p>
                     </li>
                 </ul>
             </section>
         </main>
     </div>
 
-
+    <footer>
+        © 2024 Samarth Turmari — Revitalized Big Data Analytics Portfolio
+    </footer>
 
 </body>
-
 </html>
-
-
-
