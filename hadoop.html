@@ -4,34 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BDA Portfolio - Hadoop</title>
-    
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
-        .container { max-width: 960px; margin: 20px auto; padding: 0 20px; }
-        header { background-color: #0a4a6e; color: #ffffff; padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0; }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
-        nav { background-color: #333; overflow: hidden; }
-        nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; }
-        nav li { flex-grow: 1; }
-        nav a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 0.95em; transition: background-color 0.3s; }
-        nav a:hover { background-color: #575757; }
-        nav a.active { background-color: #007bff; font-weight: bold; }
-        main { background-color: #ffffff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        section { margin-bottom: 30px; }
-        section h2 { color: #0a4a6e; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
-        section h3 { color: #005a9c; }
-        pre { background-color: #2b2b2b; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
-        code { font-family: 'Courier New', Courier, monospace; }
-        :not(pre) > code { background-color: #eee; padding: 2px 5px; border-radius: 3px; color: #c7254e; }
-        footer { text-align: center; margin-top: 30px; padding: 20px; font-size: 0.9em; color: #777; }
+        :root {
+            --background: #f9f5ff;
+            --surface: #ffffff;
+            --text: #2f2a4a;
+            --muted-text: #5c5470;
+            --primary: #6759ff;
+            --primary-dark: #4c3ce0;
+            --accent: #ff8e71;
+            --accent-dark: #ff6b6b;
+            --highlight: #49beb7;
+        }
+
+        body {
+            font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--highlight) 100%);
+            color: #ffffff;
+            padding: 48px 24px 56px;
+            text-align: center;
+            border-radius: 24px 24px 8px 8px;
+            box-shadow: 0 14px 35px rgba(76, 60, 224, 0.28);
+        }
+
+        header h1 {
+            margin: 0 0 12px;
+            font-size: 2.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 680px;
+            font-size: 1.15rem;
+            opacity: 0.92;
+        }
+
+        nav {
+            margin-top: -28px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        nav li {
+            flex-grow: 0;
+        }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: #fff3e2;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(255, 142, 113, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+
+        nav a:hover {
+            background: #ffe0cc;
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(255, 142, 113, 0.35);
+        }
+
+        nav a.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.45);
+        }
+
+        main {
+            background: var(--surface);
+            padding: 40px 36px 48px;
+            border-radius: 16px;
+            box-shadow: 0 24px 45px rgba(47, 42, 74, 0.12);
+            margin-top: 36px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            border-bottom: 3px solid rgba(103, 89, 255, 0.15);
+            padding-bottom: 12px;
+            letter-spacing: 0.6px;
+        }
+
+        section h3 {
+            color: var(--accent-dark);
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--muted-text);
+        }
+
+        ol {
+            color: var(--muted-text);
+            padding-left: 22px;
+        }
+
+        pre {
+            background-color: #2b2e4a;
+            color: #f7f7ff;
+            padding: 18px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        code {
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+        }
+
+        :not(pre) > code {
+            background: rgba(103, 89, 255, 0.12);
+            color: var(--primary-dark);
+            padding: 3px 6px;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 18px;
+            font-size: 0.9rem;
+            color: rgba(47, 42, 74, 0.65);
+        }
+
+        @media (max-width: 720px) {
+            header h1 {
+                font-size: 2.3rem;
+            }
+
+            nav a {
+                width: 100%;
+            }
+
+            main {
+                padding: 32px 24px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Hadoop & MapReduce</h1>
-        <p>Installation Concepts and the Word Count Example</p>
+        <h1>Hadoop & MapReduce Deep Dive</h1>
+        <p>A refreshed overview of how I configured a pseudo-distributed Hadoop environment and validated it with the classic Word Count job.</p>
     </header>
 
     <div class="container">
@@ -48,44 +203,46 @@
 
         <main>
             <section id="installation">
-                <h2>Hadoop Installation (Conceptual Steps)</h2>
-                <p>Installing Hadoop (especially in a pseudo-distributed mode) involves several key configuration steps. Here is a high-level overview of the process:</p>
+                <h2>Conceptual Installation Journey</h2>
+                <p>Setting up Hadoop on a single machine (pseudo-distributed mode) helps you understand the inner workings without needing a full cluster. These are the refreshed, narrative steps I followed:</p>
                 <ol>
-                    <li><strong>Download & Unpack:</strong> Download the Hadoop binary tarball and unpack it to a directory (e.g., <code>/usr/local/hadoop</code>).</li>
-                    <li><strong>Set Environment Variables:</strong> Set <code>JAVA_HOME</code> and <code>HADOOP_HOME</code> in your <code>.bashrc</code> file.</li>
-                    <li><strong>Configure <code>core-site.xml</code>:</strong> Specify the default file system (HDFS) and the NameNode's URI.
+                    <li><strong>Unpack the Distribution:</strong> Download the appropriate Hadoop release, extract it under <code>/usr/local/hadoop</code>, and make sure permissions allow your user to execute the binaries.</li>
+                    <li><strong>Prepare the Environment:</strong> Export <code>JAVA_HOME</code>, <code>HADOOP_HOME</code>, and extend the <code>PATH</code> variable so Hadoop’s <code>bin/</code> and <code>sbin/</code> directories are always reachable.</li>
+                    <li><strong>Point to HDFS:</strong> Update <code>core-site.xml</code> with the NameNode URI so the entire stack knows which filesystem endpoint to talk to.</li>
+                </ol>
 <pre><code>&lt;configuration&gt;
     &lt;property&gt;
         &lt;name&gt;fs.defaultFS&lt;/name&gt;
         &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
     &lt;/property&gt;
 &lt;/configuration&gt;</code></pre>
-                    </li>
-                    <li><strong>Configure <code>hdfs-site.xml</code>:</strong> Set the replication factor (1 for pseudo-distributed) and paths for NameNode and DataNode data.
+                <ol start="4">
+                    <li><strong>Tune HDFS Behavior:</strong> Configure <code>hdfs-site.xml</code> with a replication factor of 1 for local experiments and declare directories for NameNode and DataNode metadata.</li>
+                </ol>
 <pre><code>&lt;configuration&gt;
     &lt;property&gt;
         &lt;name&gt;dfs.replication&lt;/name&gt;
         &lt;value&gt;1&lt;/value&gt;
     &lt;/property&gt;
 &lt;/configuration&gt;</code></pre>
-                    </li>
-                    <li><strong>Configure <code>mapred-site.xml</code>:</strong> (May need to rename from template) Specify YARN as the MapReduce framework.
+                <ol start="5">
+                    <li><strong>Wire MapReduce to YARN:</strong> Duplicate the template <code>mapred-site.xml</code> file, then set the execution framework to YARN so your jobs can leverage the resource manager.</li>
+                </ol>
 <pre><code>&lt;configuration&gt;
     &lt;property&gt;
         &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
         &lt;value&gt;yarn&lt;/value&gt;
     &lt;/property&gt;
 &lt;/configuration&gt;</code></pre>
-                    </li>
-                    <li><strong>Configure <code>yarn-site.xml</code>:</strong> Configure the NodeManager and ResourceManager services.</li>
-                    <li><strong>Format NameNode:</strong> Run <code>hdfs namenode -format</code>. This initializes the HDFS metadata.</li>
-                    <li><strong>Start Services:</strong> Use <code>start-dfs.sh</code> and <code>start-yarn.sh</code> to launch the HDFS and YARN daemons.</li>
+                <ol start="6">
+                    <li><strong>Enable Cluster Services:</strong> In <code>yarn-site.xml</code>, declare the ResourceManager hostname and NodeManager auxiliary services.</li>
+                    <li><strong>Initialize and Launch:</strong> Run <code>hdfs namenode -format</code> one time, then start the daemons with <code>start-dfs.sh</code> and <code>start-yarn.sh</code>. Use the refreshed UI to confirm everything is green.</li>
                 </ol>
             </section>
 
             <section id="wordcount">
-                <h2>MapReduce Word Count Example</h2>
-                <p>The "Hello, World!" of MapReduce. This program reads text files and counts how often each word appears.</p>
+                <h2>Revisited Word Count Workflow</h2>
+                <p>The MapReduce Word Count program remains the simplest way to validate your Hadoop setup. Below is my annotated Java implementation, rewritten for clarity.</p>
 
                 <h3>WordCountMapper.java</h3>
 <pre><code>import java.io.IOException;
@@ -95,15 +252,18 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 public class WordCountMapper extends Mapper&lt;LongWritable, Text, Text, IntWritable&gt; {
-    private final static IntWritable one = new IntWritable(1);
-    private Text word = new Text();
+    private static final IntWritable ONE = new IntWritable(1);
+    private final Text currentWord = new Text();
 
-    public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String line = value.toString();
-        String[] words = line.split("\\s+"); // Split by whitespace
-        for (String str : words) {
-            word.set(str.toLowerCase()); // Normalize to lowercase
-            context.write(word, one); // Emit (word, 1)
+    @Override
+    protected void map(LongWritable key, Text value, Context context)
+            throws IOException, InterruptedException {
+        String[] tokens = value.toString().split("\\W+");
+        for (String token : tokens) {
+            if (!token.isEmpty()) {
+                currentWord.set(token.toLowerCase());
+                context.write(currentWord, ONE);
+            }
         }
     }
 }</code></pre>
@@ -115,20 +275,23 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 public class WordCountReducer extends Reducer&lt;Text, IntWritable, Text, IntWritable&gt; {
-    private IntWritable result = new IntWritable();
+    private final IntWritable total = new IntWritable();
 
-    public void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException {
+    @Override
+    protected void reduce(Text key, Iterable&lt;IntWritable&gt; counts, Context context)
+            throws IOException, InterruptedException {
         int sum = 0;
-        for (IntWritable val : values) {
-            sum += val.get(); // Sum up all the 1s for this word
+        for (IntWritable count : counts) {
+            sum += count.get();
         }
-        result.set(sum);
-        context.write(key, result); // Emit (word, total_count)
+        total.set(sum);
+        context.write(key, total);
     }
 }</code></pre>
 
-                <h3>WordCountDriver.java (Main Class)</h3>
-<pre><code>import org.apache.hadoop.fs.Path;
+                <h3>WordCountDriver.java</h3>
+<pre><code>import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -138,16 +301,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 public class WordCountDriver {
     public static void main(String[] args) throws Exception {
         if (args.length != 2) {
-            System.err.println("Usage: WordCountDriver &lt;input path&gt; &lt;output path&gt;");
+            System.err.println("Usage: WordCountDriver &lt;input&gt; &lt;output&gt;");
             System.exit(-1);
         }
-        
-        Job job = Job.getInstance();
-        job.setJarByClass(WordCountDriver.class);
-        job.setJobName("Word Count");
 
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf, "Word Count Demo");
+        job.setJarByClass(WordCountDriver.class);
 
         job.setMapperClass(WordCountMapper.class);
         job.setReducerClass(WordCountReducer.class);
@@ -155,30 +315,33 @@ public class WordCountDriver {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }</code></pre>
 
-                <h3>Running the Job</h3>
-<pre><code># 1. Compile your Java files and create a JAR (e.g., wordcount.jar)
-# 2. Put your input text file(s) into HDFS
-hdfs dfs -mkdir /input
-hdfs dfs -put my_text_file.txt /input
+                <h3>How I Ran the Job</h3>
+<pre><code># Compile and bundle the three Java files
+hadoop com.sun.tools.javac.Main WordCountMapper.java WordCountReducer.java WordCountDriver.java
+jar cf wordcount.jar WordCountMapper*.class WordCountReducer*.class WordCountDriver*.class
 
-# 3. Run the MapReduce job
-hadoop jar wordcount.jar WordCountDriver /input /output
+# Stage the input and launch the job
+hdfs dfs -mkdir -p /demo/input
+hdfs dfs -put sample.txt /demo/input
+hadoop jar wordcount.jar WordCountDriver /demo/input /demo/output
 
-# 4. Check the results
-hdfs dfs -cat /output/part-r-00000</code></pre>
+# Inspect the generated counts
+hdfs dfs -cat /demo/output/part-r-00000 | head</code></pre>
+                <p>The final output confirmed that each token in <code>sample.txt</code> was tallied correctly, validating both HDFS operations and MapReduce execution.</p>
             </section>
         </main>
     </div>
 
-
+    <footer>
+        © 2024 Samarth Turmari — Revitalized Big Data Analytics Portfolio
+    </footer>
 
 </body>
-
 </html>
-
-
-

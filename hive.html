@@ -4,34 +4,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BDA Portfolio - Apache Hive</title>
-    
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
-        .container { max-width: 960px; margin: 20px auto; padding: 0 20px; }
-        header { background-color: #0a4a6e; color: #ffffff; padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0; }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
-        nav { background-color: #333; overflow: hidden; }
-        nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; }
-        nav li { flex-grow: 1; }
-        nav a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 0.95em; transition: background-color 0.3s; }
-        nav a:hover { background-color: #575757; }
-        nav a.active { background-color: #007bff; font-weight: bold; }
-        main { background-color: #ffffff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        section { margin-bottom: 30px; }
-        section h2 { color: #0a4a6e; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
-        section h3 { color: #005a9c; }
-        pre { background-color: #2b2b2b; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
-        code { font-family: 'Courier New', Courier, monospace; }
-        :not(pre) > code { background-color: #eee; padding: 2px 5px; border-radius: 3px; color: #c7254e; }
-        footer { text-align: center; margin-top: 30px; padding: 20px; font-size: 0.9em; color: #777; }
+        :root {
+            --background: #f9f5ff;
+            --surface: #ffffff;
+            --text: #2f2a4a;
+            --muted-text: #5c5470;
+            --primary: #6759ff;
+            --primary-dark: #4c3ce0;
+            --accent: #ff8e71;
+            --accent-dark: #ff6b6b;
+            --highlight: #49beb7;
+        }
+
+        body {
+            font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--highlight) 100%);
+            color: #ffffff;
+            padding: 48px 24px 56px;
+            text-align: center;
+            border-radius: 24px 24px 8px 8px;
+            box-shadow: 0 14px 35px rgba(76, 60, 224, 0.28);
+        }
+
+        header h1 {
+            margin: 0 0 12px;
+            font-size: 2.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 720px;
+            font-size: 1.15rem;
+            opacity: 0.92;
+        }
+
+        nav {
+            margin-top: -28px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        nav li { flex-grow: 0; }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: #fff3e2;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(255, 142, 113, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+
+        nav a:hover {
+            background: #ffe0cc;
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(255, 142, 113, 0.35);
+        }
+
+        nav a.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.45);
+        }
+
+        main {
+            background: var(--surface);
+            padding: 40px 36px 48px;
+            border-radius: 16px;
+            box-shadow: 0 24px 45px rgba(47, 42, 74, 0.12);
+            margin-top: 36px;
+        }
+
+        section { margin-bottom: 40px; }
+
+        section h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            border-bottom: 3px solid rgba(103, 89, 255, 0.15);
+            padding-bottom: 12px;
+            letter-spacing: 0.6px;
+        }
+
+        section h3 {
+            color: var(--accent-dark);
+            margin-bottom: 12px;
+        }
+
+        p { color: var(--muted-text); }
+
+        pre {
+            background-color: #2b2e4a;
+            color: #f7f7ff;
+            padding: 18px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        code {
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+        }
+
+        :not(pre) > code {
+            background: rgba(103, 89, 255, 0.12);
+            color: var(--primary-dark);
+            padding: 3px 6px;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 18px;
+            font-size: 0.9rem;
+            color: rgba(47, 42, 74, 0.65);
+        }
+
+        @media (max-width: 720px) {
+            header h1 { font-size: 2.3rem; }
+            nav a { width: 100%; }
+            main { padding: 32px 24px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Apache Hive</h1>
-        <p>Data Warehousing and SQL-like Queries on Hadoop</p>
+        <h1>Apache Hive for Marketplace Insights</h1>
+        <p>An updated HiveQL story that warehouses online retail orders, highlights detailed query outputs, and demonstrates partition-aware design.</p>
     </header>
 
     <div class="container">
@@ -48,120 +184,154 @@
 
         <main>
             <section id="intro">
-                <h2>Introduction to Hive</h2>
-                <p>Apache Hive provides a data warehouse infrastructure on top of Hadoop. It gives an SQL-like interface, called <strong>HiveQL (HQL)</strong>, to query data stored in HDFS. Hive translates HQL queries into MapReduce or Tez/Spark jobs.</p>
-                <p>We will use the same 'employees' and 'departments' data as in the Pig example.</p>
+                <h2>Scenario Overview</h2>
+                <p>This Hive example shifts to a fictional marketplace that fulfils gadget orders through both online and in-store channels. The goal is to load transactional data, combine it with a product catalog, and surface category-level revenue metrics—all while keeping the descriptions richer than before.</p>
             </section>
-            
-            <section id="setup">
-                <h3>1. Creating Tables</h3>
-                <p>First, we define the schema for our data.</p>
-<pre><code>-- Create the employees table
-CREATE TABLE employees (
-    id INT,
-    name STRING,
-    dept_id INT,
-    salary INT
+
+            <section id="tables">
+                <h2>1. Defining Tables and Loading Data</h2>
+                <p>Two external CSV files serve as the foundation. The schema definitions below enable Hive to parse them correctly:</p>
+<pre><code>-- Orders fact table
+CREATE TABLE orders (
+    order_id INT,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    unit_price DOUBLE,
+    order_date STRING,
+    fulfillment_channel STRING
 )
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ',';
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
 
--- Create the departments table
-CREATE TABLE departments (
-    id INT,
-    dept_name STRING
+-- Product dimension
+CREATE TABLE products (
+    product_id INT,
+    product_name STRING,
+    category STRING
 )
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ',';
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
 
--- Load data from HDFS (assuming files are there)
-LOAD DATA INPATH '/input/employees.txt' INTO TABLE employees;
-LOAD DATA INPATH '/input/departments.txt' INTO TABLE departments;</code></pre>
+LOAD DATA INPATH '/warehouse/orders.csv' INTO TABLE orders;
+LOAD DATA INPATH '/warehouse/products.csv' INTO TABLE products;</code></pre>
+                <p>The orders file contains six sample records, while the product catalog lists five items:</p>
+<pre><code>-- orders.csv excerpt
+1,101,301,2,45.00,2024-03-01,Online
+2,102,302,1,120.00,2024-03-01,Store
+3,101,303,3,18.00,2024-03-02,Online
+4,103,301,1,45.00,2024-03-02,Online
+5,104,304,2,65.00,2024-03-03,Store
+6,105,305,4,15.00,2024-03-03,Online
+
+-- products.csv excerpt
+301,Smart Kettle,Kitchen
+302,Espresso Machine,Appliances
+303,Reusable Straw Pack,Accessories
+304,Bluetooth Scale,Wellness
+305,Coffee Grinder,Kitchen</code></pre>
             </section>
 
-            <section id="commands">
-                <h2>2. HQL Command Demonstrations</h2>
-                
-                <h3>SELECT</h3>
-                <p>Select specific columns with a <code>WHERE</code> clause.</p>
-<pre><code>-- Find all employees in department 20 with a salary over 50000
-SELECT name, salary
-FROM employees
-WHERE dept_id = 20 AND salary > 50000;
+            <section id="queries">
+                <h2>2. Query Walkthrough with Outputs</h2>
 
--- Result:
--- Charlie  75000</code></pre>
+                <h3>SELECT with Calculated Columns</h3>
+                <p>Retrieve the online orders placed on launch day and compute their line totals:</p>
+<pre><code>SELECT
+    order_id,
+    quantity * unit_price AS total_value
+FROM orders
+WHERE order_date = '2024-03-01'
+  AND fulfillment_channel = 'Online';</code></pre>
+<pre><code>order_id | total_value
+---------+------------
+1        | 90.00</code></pre>
 
-                <h3>JOIN</h3>
-                <p>Combine data from the <code>employees</code> and <code>departments</code> tables.</p>
-<pre><code>-- Get the name of each employee and their department name
-SELECT e.name, d.dept_name
-FROM employees e
-JOIN departments d ON e.dept_id = d.id;
+                <h3>JOIN Products to Orders</h3>
+                <p>Enrich each order with descriptive product information to make reports readable:</p>
+<pre><code>SELECT
+    o.order_id,
+    p.product_name,
+    p.category,
+    o.quantity,
+    o.quantity * o.unit_price AS total_value
+FROM orders o
+JOIN products p
+  ON o.product_id = p.product_id
+ORDER BY o.order_id;</code></pre>
+<pre><code>order_id | product_name           | category     | quantity | total_value
+---------+------------------------+--------------+----------+------------
+1        | Smart Kettle           | Kitchen      | 2        | 90.00
+2        | Espresso Machine       | Appliances   | 1        | 120.00
+3        | Reusable Straw Pack    | Accessories  | 3        | 54.00
+4        | Smart Kettle           | Kitchen      | 1        | 45.00
+5        | Bluetooth Scale        | Wellness     | 2        | 130.00
+6        | Coffee Grinder         | Kitchen      | 4        | 60.00</code></pre>
 
--- Result:
--- Alice    Engineering
--- Bob      Engineering
--- Charlie  Sales
--- David    Sales
--- Eve      HR</code></pre>
-
-                <h3>AGGREGATION and GROUP BY</h3>
-                <p>Perform aggregate calculations (like <code>AVG</code>, <code>SUM</code>, <code>COUNT</code>) on groups of data.</p>
-<pre><code>-- Find the average salary and number of employees for each department
-SELECT
-    d.dept_name,
-    AVG(e.salary) AS avg_salary,
-    COUNT(e.id) AS employee_count
-FROM employees e
-JOIN departments d ON e.dept_id = d.id
-GROUP BY d.dept_name;
-
--- Result:
--- Engineering  55000.0   2
--- HR           80000.0   1
--- Sales        60000.0   2</code></pre>
+                <h3>Aggregation and GROUP BY</h3>
+                <p>Summarize performance by product category to see where the revenue lands:</p>
+<pre><code>SELECT
+    p.category,
+    SUM(o.quantity * o.unit_price) AS gross_revenue,
+    COUNT(DISTINCT o.order_id) AS order_count,
+    AVG(o.quantity) AS avg_units_per_order
+FROM orders o
+JOIN products p
+  ON o.product_id = p.product_id
+GROUP BY p.category
+ORDER BY gross_revenue DESC;</code></pre>
+<pre><code>category     | gross_revenue | order_count | avg_units_per_order
+-------------+---------------+-------------+---------------------
+Kitchen      | 195.00        | 3           | 2.3333333333
+Wellness     | 130.00        | 1           | 2.0
+Appliances   | 120.00        | 1           | 1.0
+Accessories  | 54.00         | 1           | 3.0</code></pre>
+                <p>The kitchen category leads, buoyed by repeated kettle purchases, while accessories trail with a single small order.</p>
             </section>
-            
+
             <section id="partitioning">
-                <h2>3. Partitioning</h2>
-                <p>Partitioning is a key optimization technique. It divides a table into parts based on the values of a specific column (e.g., date, country). This allows Hive to skip reading data that isn't relevant to a query, dramatically speeding up performance.</p>
-                
-                <h3>Example: Creating a Partitioned Table</h3>
-<pre><code>-- Create a table for log data, partitioned by the event date
-CREATE TABLE event_logs (
-    timestamp_ms BIGINT,
-    log_level STRING,
-    message STRING
+                <h2>3. Partition Strategy</h2>
+                <p>To accelerate day-specific reporting, I created a partitioned summary table. Each partition stores all metrics for a given order date and shipping region, enabling Hive to skip entire directories when queries filter by those keys.</p>
+<pre><code>CREATE TABLE daily_sales (
+    order_id INT,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    unit_price DOUBLE,
+    fulfillment_channel STRING
 )
-PARTITIONED BY (event_date STRING); -- The partition column</code></pre>
+PARTITIONED BY (
+    order_date STRING,
+    shipping_region STRING
+)
+STORED AS PARQUET;</code></pre>
+                <p>Loading data requires specifying both partition columns explicitly:</p>
+<pre><code>LOAD DATA INPATH '/warehouse/regions/west/2024-03-01'
+INTO TABLE daily_sales
+PARTITION (order_date='2024-03-01', shipping_region='US-West');
 
-                <h3>Loading Data into Partitions</h3>
-                <p>You must specify the partition when loading data.</p>
-<pre><code>-- Load logs for a specific date
-LOAD DATA INPATH '/input/logs/2025-11-05.log'
-INTO TABLE event_logs
-PARTITION (event_date = '2025-11-05');
-
--- Load logs for another date
-LOAD DATA INPATH '/input/logs/2025-11-06.log'
-INTO TABLE event_logs
-PARTITION (event_date = '2025-11-06');</code></pre>
-                
-                <h3>Querying a Partitioned Table</h3>
-                <p>When you filter on the partition column, Hive only reads the data in that partition's directory.</p>
-<pre><code>-- This query is fast, as it only reads the '2025-11-06' partition
-SELECT *
-FROM event_logs
-WHERE event_date = '2025-11-06' AND log_level = 'ERROR';</code></pre>
+LOAD DATA INPATH '/warehouse/regions/east/2024-03-02'
+INTO TABLE daily_sales
+PARTITION (order_date='2024-03-02', shipping_region='US-East');</code></pre>
+                <p>Queries that pin down the partition values execute noticeably faster because Hive only scans relevant Parquet files:</p>
+<pre><code>SELECT product_id, quantity
+FROM daily_sales
+WHERE order_date = '2024-03-02'
+  AND shipping_region = 'US-East'
+  AND fulfillment_channel = 'Online';</code></pre>
+<pre><code>product_id | quantity
+-----------+---------
+301        | 1
+303        | 3</code></pre>
             </section>
         </main>
     </div>
 
-    
+    <footer>
+        © 2024 Samarth Turmari — Revitalized Big Data Analytics Portfolio
+    </footer>
 
 </body>
-
 </html>
-
-

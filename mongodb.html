@@ -4,34 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BDA Portfolio - MongoDB</title>
-    
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
-        .container { max-width: 960px; margin: 20px auto; padding: 0 20px; }
-        header { background-color: #0a4a6e; color: #ffffff; padding: 40px 20px; text-align: center; border-radius: 8px 8px 0 0; }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; }
-        nav { background-color: #333; overflow: hidden; }
-        nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; }
-        nav li { flex-grow: 1; }
-        nav a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-size: 0.95em; transition: background-color 0.3s; }
-        nav a:hover { background-color: #575757; }
-        nav a.active { background-color: #007bff; font-weight: bold; }
-        main { background-color: #ffffff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        section { margin-bottom: 30px; }
-        section h2 { color: #0a4a6e; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
-        section h3 { color: #005a9c; }
-        pre { background-color: #2b2b2b; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
-        code { font-family: 'Courier New', Courier, monospace; }
-        :not(pre) > code { background-color: #eee; padding: 2px 5px; border-radius: 3px; color: #c7254e; }
-        footer { text-align: center; margin-top: 30px; padding: 20px; font-size: 0.9em; color: #777; }
+        :root {
+            --background: #f9f5ff;
+            --surface: #ffffff;
+            --text: #2f2a4a;
+            --muted-text: #5c5470;
+            --primary: #6759ff;
+            --primary-dark: #4c3ce0;
+            --accent: #ff8e71;
+            --accent-dark: #ff6b6b;
+            --highlight: #49beb7;
+        }
+
+        body {
+            font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 24px auto 40px;
+            padding: 0 24px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--highlight) 100%);
+            color: #ffffff;
+            padding: 48px 24px 56px;
+            text-align: center;
+            border-radius: 24px 24px 8px 8px;
+            box-shadow: 0 14px 35px rgba(76, 60, 224, 0.28);
+        }
+
+        header h1 {
+            margin: 0 0 12px;
+            font-size: 2.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 720px;
+            font-size: 1.15rem;
+            opacity: 0.92;
+        }
+
+        nav {
+            margin-top: -28px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        nav li { flex-grow: 0; }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: #fff3e2;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(255, 142, 113, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+        }
+
+        nav a:hover {
+            background: #ffe0cc;
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(255, 142, 113, 0.35);
+        }
+
+        nav a.active {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.45);
+        }
+
+        main {
+            background: var(--surface);
+            padding: 40px 36px 48px;
+            border-radius: 16px;
+            box-shadow: 0 24px 45px rgba(47, 42, 74, 0.12);
+            margin-top: 36px;
+        }
+
+        section { margin-bottom: 40px; }
+
+        section h2 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            border-bottom: 3px solid rgba(103, 89, 255, 0.15);
+            padding-bottom: 12px;
+            letter-spacing: 0.6px;
+        }
+
+        section h3 {
+            color: var(--accent-dark);
+            margin-bottom: 12px;
+        }
+
+        p, li { color: var(--muted-text); }
+
+        pre {
+            background-color: #2b2e4a;
+            color: #f7f7ff;
+            padding: 18px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            font-size: 0.95rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        code {
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+        }
+
+        :not(pre) > code {
+            background: rgba(103, 89, 255, 0.12);
+            color: var(--primary-dark);
+            padding: 3px 6px;
+            border-radius: 6px;
+        }
+
+        .button-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            box-shadow: 0 12px 24px rgba(255, 107, 107, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 28px rgba(255, 107, 107, 0.45);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            padding: 18px;
+            font-size: 0.9rem;
+            color: rgba(47, 42, 74, 0.65);
+        }
+
+        @media (max-width: 720px) {
+            header h1 { font-size: 2.3rem; }
+            nav a { width: 100%; }
+            main { padding: 32px 24px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>MongoDB Key Concepts</h1>
-        <p>A Summary from Professional Coursework</p>
+        <h1>MongoDB Concepts Reframed</h1>
+        <p>Fresh notes from my MongoDB coursework, rewritten with new styling while keeping the certificate PDFs exactly as they were.</p>
     </header>
 
     <div class="container">
@@ -50,104 +207,100 @@
             <section id="certificate">
                 <h2>Course Certificate</h2>
                 <p>
-                    <a href="mongo-certificate.pdf" target="_blank" style="text-decoration: none; font-weight: bold; background-color: #4DB33D; color: white; padding: 10px 15px; border-radius: 5px;">
-                        View MongoDB Certificate (PDF)
+                    <a href="mongo-certificate.pdf" target="_blank" class="button-link">
+                        📄 View MongoDB Certificate (PDF)
                     </a>
                 </p>
             </section>
+
             <section id="core">
-                <h2>Core Concepts</h2>
-                <p>MongoDB is a NoSQL, document-oriented database. Instead of tables and rows, it uses <strong>collections</strong> and <strong>documents</strong>.</p>
+                <h2>Document Model Refresher</h2>
+                <p>MongoDB stores data as rich documents instead of rigid rows. Collections gather related documents, and every document is encoded in BSON, which supports nested structures and binary data.</p>
                 <ul>
-                    <li><strong>Document:</strong> A BSON (binary JSON) object. This is the basic unit of data. It's a set of key-value pairs, much like a JSON object.
-                        <pre><code>{ "_id": ObjectId("..."), "name": "Alice", "age": 30, "city": "New York" }</code></pre>
-                    </li>
-                    <li><strong>Collection:</strong> A group of documents. This is the equivalent of a table in a relational database, but it does not enforce a strict schema.</li>
-                    <li><strong>Flexible Schema:</strong> Different documents in the same collection can have different fields. This is powerful for evolving applications.</li>
+                    <li><strong>Document:</strong> Key-value pairs that can contain embedded objects and arrays. Each document owns an <code>_id</code> field for identity.</li>
+                    <li><strong>Collection:</strong> A logical grouping similar to a relational table but without enforced schemas, allowing different documents to have distinct fields.</li>
+                    <li><strong>Schema flexibility:</strong> Because fields are optional, applications can evolve quickly without expensive migrations.</li>
                 </ul>
+<pre><code>{
+  "_id": ObjectId("..."),
+  "name": "Asha",
+  "age": 29,
+  "skills": ["Node.js", "MongoDB"],
+  "availability": { "remote": true, "hours_per_week": 25 }
+}</code></pre>
             </section>
-            
+
             <section id="crud">
-                <h2>Basic CRUD Operations</h2>
-                <p>CRUD (Create, Read, Update, Delete) operations are the bread and butter of any database.</p>
-<pre><code>// Use a specific database
-use("myDatabase");
+                <h2>CRUD Operations Recapped</h2>
+                <p>The JavaScript shell (or drivers) expose intuitive helpers for manipulating data. Here is a paraphrased set of commands I used frequently:</p>
+<pre><code>// Switch to the project database
+use("portfolioDB");
 
-// CREATE: Insert a single document
-db.users.insertOne({ "name": "Bob", "age": 25, "status": "active" });
+// CREATE
+const inserted = db.consultants.insertOne({
+  name: "Ravi",
+  region: "APAC",
+  tech_stack: ["MongoDB", "Express"],
+  active: true
+});
 
-// READ: Find documents
-db.users.find({ "status": "active" }); // Find all users with status "active"
-db.users.findOne({ "name": "Bob" });   // Find the first user named "Bob"
+// READ
+const activeConsultants = db.consultants.find({ active: true });
+db.consultants.findOne({ name: "Ravi" });
 
-// UPDATE: Modify a document
-db.users.updateOne(
-    { "name": "Bob" },                  // Filter: Find documents to update
-    { $set: { "age": 26 } }             // Update: Set the age to 26
+// UPDATE
+db.consultants.updateOne(
+  { name: "Ravi" },
+  { $push: { tech_stack: "React" } }
 );
 
-// DELETE: Remove documents
-db.users.deleteOne({ "name": "Bob" });</code></pre>
+// DELETE
+db.consultants.deleteOne({ name: "Ravi" });</code></pre>
             </section>
 
             <section id="indexing">
-                <h2>Key Concept: Indexing</h2>
-                <p>Indexing is the most important concept for MongoDB performance. Without indexes, MongoDB must perform a <strong>collection scan</strong> (reading every document) to find matching query results.</p>
-                <p>An index stores the value of a specific field (or fields) in a pre-sorted order, allowing MongoDB to find data extremely quickly.</p>
-                
-                <h3>Single-Field Index</h3>
-                <p>Used to speed up queries on a single field.</p>
-<pre><code>// Creates an ascending (1) index on the 'name' field
-db.users.createIndex({ "name": 1 });
+                <h2>Index Patterns</h2>
+                <p>Indexes are the core performance lever. By default MongoDB maintains an index on <code>_id</code>, but creating additional single-field or compound indexes can drop query latency from seconds to milliseconds.</p>
 
-// This query will now use the index and be very fast
-db.users.find({ "name": "Alice" });</code></pre>
+                <h3>Single-Field Index</h3>
+                <p>Use when you routinely search or sort by one field.</p>
+<pre><code>db.consultants.createIndex({ region: 1 });
+
+db.consultants.find({ region: "EMEA" });</code></pre>
 
                 <h3>Compound Index</h3>
-                <p>An index on multiple fields. The order of fields matters.</p>
-<pre><code>// Creates an index on 'status' (ascending) then 'age' (descending)
-db.users.createIndex({ "status": 1, "age": -1 });
+                <p>Order matters: MongoDB will scan by the first field and then refine by subsequent fields.</p>
+<pre><code>db.consultants.createIndex({ active: 1, "skills.level": -1 });
 
-// This query can be fully supported by the index
-db.users.find({ "status": "active" }).sort({ "age": -1 });
-
-// This query can also use part of the index ("status")
-db.users.find({ "status": "pending" });</code></pre>
+db.consultants.find({ active: true }).sort({ "skills.level": -1 });</code></pre>
             </section>
-            
+
             <section id="aggregation">
-                <h2>Key Concept: Aggregation Framework</h2>
-                <p>The Aggregation Framework is MongoDB's way of performing data processing and analysis, similar to <code>GROUP BY</code> in SQL or a Pig/Hive script.</p>
-                <p>It uses a <strong>pipeline</strong> concept, where documents pass through a series of stages, each performing a transformation.</p>
-                
-                <h3>Example Pipeline</h3>
-                <p>Let's say we have a <code>products</code> collection. We want to find the average price of all "Electronics" products, grouped by their sub-category.</p>
-<pre><code>db.products.aggregate([
-    {
-        // Stage 1: Filter the documents (like WHERE)
-        $match: { "category": "Electronics" }
-    },
-    {
-        // Stage 2: Group by sub_category and calculate average (like GROUP BY)
-        $group: {
-            "_id": "$sub_category",  // Group by this field
-            "averagePrice": { $avg: "$price" },
-            "itemCount": { $sum: 1 }
-        }
-    },
-    {
-        // Stage 3: Sort the results by average price
-        $sort: { "averagePrice": -1 } // -1 for descending
+                <h2>Aggregation Pipeline Snapshot</h2>
+                <p>The aggregation framework allows multi-stage analytics directly inside MongoDB. The pipeline below filters consultants, groups them by region, and ranks those regions by average availability.</p>
+<pre><code>db.consultants.aggregate([
+  {
+    $match: { active: true }
+  },
+  {
+    $group: {
+      _id: "$region",
+      avgHours: { $avg: "$availability.hours_per_week" },
+      specialists: { $sum: 1 }
     }
+  },
+  {
+    $sort: { avgHours: -1 }
+  }
 ]);</code></pre>
+                <p>Executing a pipeline like this keeps heavy lifting within the database engine, minimizing data transfer to the application tier.</p>
             </section>
         </main>
     </div>
 
+    <footer>
+        © 2024 Samarth Turmari — Revitalized Big Data Analytics Portfolio
+    </footer>
 
 </body>
-
 </html>
-
-
-
