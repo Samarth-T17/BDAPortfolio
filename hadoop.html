@@ -186,7 +186,7 @@
 
     <header>
         <h1>Hadoop & MapReduce Deep Dive</h1>
-        <p>A refreshed overview of how I configured a pseudo-distributed Hadoop environment and validated it with the classic Word Count job.</p>
+        <p>An overview of how I configured a pseudo-distributed Hadoop environment and validated it with the classic Word Count job.</p>
     </header>
 
     <div class="container">
@@ -204,7 +204,7 @@
         <main>
             <section id="installation">
                 <h2>Conceptual Installation Journey</h2>
-                <p>Setting up Hadoop on a single machine (pseudo-distributed mode) helps you understand the inner workings without needing a full cluster. These are the refreshed, narrative steps I followed:</p>
+                <p>Setting up Hadoop on a single machine (pseudo-distributed mode) helps you understand the inner workings without needing a full cluster. These are the steps I followed:</p>
                 <ol>
                     <li><strong>Unpack the Distribution:</strong> Download the appropriate Hadoop release, extract it under <code>/usr/local/hadoop</code>, and make sure permissions allow your user to execute the binaries.</li>
                     <li><strong>Prepare the Environment:</strong> Export <code>JAVA_HOME</code>, <code>HADOOP_HOME</code>, and extend the <code>PATH</code> variable so Hadoop’s <code>bin/</code> and <code>sbin/</code> directories are always reachable.</li>
@@ -236,12 +236,12 @@
 &lt;/configuration&gt;</code></pre>
                 <ol start="6">
                     <li><strong>Enable Cluster Services:</strong> In <code>yarn-site.xml</code>, declare the ResourceManager hostname and NodeManager auxiliary services.</li>
-                    <li><strong>Initialize and Launch:</strong> Run <code>hdfs namenode -format</code> one time, then start the daemons with <code>start-dfs.sh</code> and <code>start-yarn.sh</code>. Use the refreshed UI to confirm everything is green.</li>
+                    <li><strong>Initialize and Launch:</strong> Run <code>hdfs namenode -format</code> one time, then start the daemons with <code>start-dfs.sh</code> and <code>start-yarn.sh</code>. Use the web UI to confirm everything is running.</li>
                 </ol>
             </section>
 
             <section id="wordcount">
-                <h2>Revisited Word Count Workflow</h2>
+                <h2>Word Count Workflow</h2>
                 <p>The MapReduce Word Count program remains the simplest way to validate your Hadoop setup. Below is my annotated Java implementation, rewritten for clarity.</p>
 
                 <h3>WordCountMapper.java</h3>
@@ -340,7 +340,7 @@ hdfs dfs -cat /demo/output/part-r-00000 | head</code></pre>
     </div>
 
     <footer>
-        © 2024 Samarth Turmari — Revitalized Big Data Analytics Portfolio
+        © 2024 Samarth Turmari — Big Data Analytics Portfolio
     </footer>
 
 </body>
